@@ -26,10 +26,12 @@ export const OnRampTransactions = ({
           <div className="flex justify-between">
             <div>
               <div className="text-sm">Received INR</div>
-              <div className="text-slate-600 text-xs">
+              <div className="text-slate-600 text-xs ">
                 {transaction.time.toDateString()}
               </div>
+            <p className="text-sm text-red-500">{transaction.status}</p>
             </div>
+
             <div className="flex flex-col justify-center">
               + Rs {transaction.amount / 100}
             </div>

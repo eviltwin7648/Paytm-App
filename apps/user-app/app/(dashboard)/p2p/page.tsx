@@ -1,8 +1,7 @@
-export default function Page(): JSX.Element {
-    return (
-      <div>
-        P2P Transfer
-      </div>
-    );
-  }
-  
+import {SendCard} from "../../../components/SendCard";
+
+export default function() {
+    return <div className="w-full">
+        <SendCard />
+    </div>
+}

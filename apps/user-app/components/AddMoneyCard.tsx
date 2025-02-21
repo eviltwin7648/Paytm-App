@@ -47,7 +47,7 @@ export const AddMoneyCard = () => {
               SupportedBanks.find((bank) => bank.bank === value)?.url || ""
             );
             setProvider(
-              SupportedBanks.find((bank) => bank.bank === value)?.url || ""
+              SupportedBanks.find((bank) => bank.bank === value)?.bank || ""
             );
           }}
         />
