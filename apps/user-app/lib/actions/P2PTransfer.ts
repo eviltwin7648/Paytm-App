@@ -26,7 +26,7 @@ export async function p2pTransfer(to: string, amount: number) {
         const fromBalance = await tx.balance.findUnique({
             where: { userId: Number(from) },
           });
-          if (!fromBalance || fromBalance.amount < amount) {
+          if (!fromBalance || fromBalance.amount < Number(amount)) {
             throw new Error('Insufficient funds');
           }
 
@@ -39,5 +39,13 @@ export async function p2pTransfer(to: string, amount: number) {
             where: { userId: toUser.id },
             data: { amount: { increment: Number(amount) *100 } },
           });
+        
+          const transactions =await prisma.transaction.create({
+            data:{
+                toUser:toUser.id,
+                fromUser:Number(from),
+                amount:Number(amount)
+            }
+          })
     });
 }

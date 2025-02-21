@@ -8,7 +8,7 @@ export default function Layout({
   return (
     <div className="flex">
       <div className="w-72 border-r border-slate-300 min-h-screen mr-4 pt-28 ">
-        <SidebarItem title={"Dashboard"} icon={<HomeIcon/>} href="/dashboard" />
+        {/* <SidebarItem title={"Dashboard"} icon={<HomeIcon/>} href="/dashboard" /> */}
         <SidebarItem title={"Transfer"} icon={<TransferIcon/>} href="/transfer" />
         <SidebarItem title={"Transaction"} icon={<TransactionsIcon/>} href="/transactions" />
         <SidebarItem title={"P2P Transfer"} icon={<TransactionsIcon/>} href="/p2p" />

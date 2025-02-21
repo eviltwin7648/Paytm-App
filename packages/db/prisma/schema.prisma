@@ -21,6 +21,8 @@ model User {
   password String
   Balance  Balance[]
   onRampTransaction onRampTransaction[]
+  sentTransactions     Transaction[] @relation(name: "sender")
+  receivedTransactions Transaction[] @relation(name: "receiver")
 }
 
 model Merchant {
@@ -47,6 +49,16 @@ model onRampTransaction {
   startTime DateTime
   userId Int
   user User @relation(fields: [userId], references: [id])
+}
+
+model Transaction {
+  id Int @id @default(autoincrement())
+  amount Int
+  toUser Int
+  fromUser Int
+  time DateTime @default(now())
+  from User @relation(fields:[fromUser], references:[id], name: "sender")
+  to   User @relation(fields:[toUser], references:[id], name: "receiver")
 }
 
 enum AuthType {
