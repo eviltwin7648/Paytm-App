@@ -3,20 +3,20 @@ name: Build on PR
 on: 
   pull_request:
     branches:
-      -main
+      - main  # Fixed spacing issue
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps: 
-      -uses: actions/checkout@v3
-      -name: Use Node.js
-      uses: actions/setup-node@v3
-      with: 
-        node-version: '20'
+      - uses: actions/checkout@v3  # Fixed syntax
+      - name: Use Node.js  # Fixed syntax
+        uses: actions/setup-node@v3
+        with: 
+          node-version: '20'
 
-      -name: Install dependencies
-      run: npm install
+      - name: Install dependencies  # Fixed syntax
+        run: npm install
 
-      -name: Run Build
-      run: npm run build
+      - name: Run Build  # Fixed syntax
+        run: npm run build
