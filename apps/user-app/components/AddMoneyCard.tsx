@@ -31,9 +31,9 @@ export const AddMoneyCard = () => {
       <div className="w-full">
         <TextInput
           label="Amount"
-          onChange={(value) => {
-            setAmount(value);
-          }}
+          onChange={(value) => 
+            setAmount(Number(value))
+          }
           placeholder="Enter Amount"
         />
         <div>Bank</div>
