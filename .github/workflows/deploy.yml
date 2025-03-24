@@ -22,7 +22,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./docker/Dockerfile.user
+          file: ./docker/Dockerfile.userApp
           push: true
           tags: eviltwin7648/paytm-project:latest
 
