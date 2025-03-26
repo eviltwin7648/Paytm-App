@@ -39,5 +39,6 @@ jobs:
             sudo docker pull eviltwin7648/paytm-project:latest
             sudo docker stop paytm-app || true
             sudo docker rm paytm-app || true
+            sudo docker system prune -af
             sudo docker run -e DATABASE_URL=${{ secrets.DATABASE_URL }} -d --name paytm-app -p 3000:3000 eviltwin7648/paytm-project:latest
 
