@@ -1,32 +1,26 @@
-FROM node:20 as builder
+FROM node:20
 
 WORKDIR /usr/src/app
 
+# Copy package files and install dependencies
 COPY package.json package-lock.json turbo.json ./
 COPY apps ./apps
 COPY packages ./packages
 
+# Set NODE_ENV so that devDependencies are not skipped (esp. for prisma)
+ENV NODE_ENV=development
+
+# Install everything including prisma
 RUN npm install
 
-# Generate Prisma client including the native binary
+# Run Prisma generate (make sure prisma is in root deps)
 RUN npx prisma generate --schema=packages/db/prisma/schema.prisma
 
-# Build your app
+# Build the app
 RUN npm run build
 
-
-# --- FINAL PRODUCTION IMAGE ---
-FROM node:20-slim
-
-WORKDIR /usr/src/app
-
-# Copy built files and node_modules from builder
-COPY --from=builder /usr/src/app /usr/src/app
-
-# 🔥 Prisma fix: Copy the generated Prisma engine
-COPY --from=builder /usr/src/app/packages/db/node_modules/.prisma /usr/src/app/packages/db/node_modules/.prisma
-
-# Optional: Set NODE_ENV for production
+# Set environment to production for runtime
 ENV NODE_ENV=production
 
+# Start the app
 CMD ["npm", "run", "start-user-app"]
